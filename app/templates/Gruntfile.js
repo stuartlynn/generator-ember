@@ -39,9 +39,9 @@ module.exports = function (grunt) {
                 files: ['test/spec/{,*/}*.coffee'],
                 tasks: ['coffee:test']
             },<% } %>
-            compass: {
-                files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server']
+            stylus: {
+                files: ['app/styles/**/*.styl'],
+                tasks: ['stylus']
             },
             neuter: {<% if (!options.coffee) { %>
                 files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],<% }else{ %>
@@ -164,27 +164,15 @@ module.exports = function (grunt) {
                 }]
             }
         },<% } %>
-        compass: {
-            options: {
-                sassDir: '<%%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
-                generatedImagesDir: '.tmp/images/generated',
-                imagesDir: '<%%= yeoman.app %>/images',
-                javascriptsDir: '<%%= yeoman.app %>/scripts',
-                fontsDir: '<%%= yeoman.app %>/styles/fonts',
-                importPath: 'app/bower_components',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/styles/fonts',
-                relativeAssets: false
-            },
-            dist: {},
-            server: {
+       stylus: {
+            compile: {
                 options: {
-                    debugInfo: true
-                }
+                    compress: true,
+                        paths: ['node_modules/grunt-contrib-stylus/node_modules']
+                },
+            files: { 'app/styles/*.css': ['app/styles/*.styl']}
             }
-        },
+        },    
         // not used since Uglify task does concat,
         // but still available if needed
         /*concat: {
@@ -402,6 +390,9 @@ module.exports = function (grunt) {
         'mocha'<% } else if (testFramework === 'jasmine') { %>
         'jasmine'<% } %>
     ]);
+
+    grunt.loadNpmTasks('grunt-contrib-stylus'); // might not be necessary if you are using load-grunt-tasks
+    grunt.registerTask('compass', ['stylus']);  
 
     grunt.registerTask('build', [
         'clean:dist',
