@@ -1,5 +1,5 @@
 {
-  "name": "generator-ember",
+  "name": "generator-ember-stylus",
   "version": "0.7.1",
   "description": "Yeoman generator for Ember",
   "keywords": [
@@ -16,7 +16,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/yeoman/generator-ember.git"
+    "url": "git://github.com/stuartlynn/generator-ember-stylus.git"
   },
   "scripts": {
     "test": "mocha --reporter spec"

@@ -3,7 +3,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
-var EmberGenerator = module.exports = function EmberGenerator(args, options) {
+var EmberGenerator = module.exports = function EmberStylusGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
 
   if (this.appname.match(/^[Ee]mber$/)) {
@@ -56,11 +56,11 @@ EmberGenerator.prototype.welcome = function welcome() {
 
 EmberGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
-
+  
   var prompts = [{
     type: 'confirm',
     name: 'compassBootstrap',
-    message: 'Would you like to include Twitter Bootstrap for Sass?',
+    message: 'Would you like to include Twitter Bootstrap for Stylus?',
     default: true
   }];
 
@@ -148,18 +148,18 @@ EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
   }
   // Wire Twitter Bootstrap plugins
   this.indexFile = this.appendScripts(this.indexFile, 'scripts/plugins.js', [
-    'bower_components/bootstrap-sass/js/affix.js',
-    'bower_components/bootstrap-sass/js/alert.js',
-    'bower_components/bootstrap-sass/js/dropdown.js',
-    'bower_components/bootstrap-sass/js/tooltip.js',
-    'bower_components/bootstrap-sass/js/modal.js',
-    'bower_components/bootstrap-sass/js/transition.js',
-    'bower_components/bootstrap-sass/js/button.js',
-    'bower_components/bootstrap-sass/js/popover.js',
-    'bower_components/bootstrap-sass/js/carousel.js',
-    'bower_components/bootstrap-sass/js/scrollspy.js',
-    'bower_components/bootstrap-sass/js/collapse.js',
-    'bower_components/bootstrap-sass/js/tab.js'
+    'bower_components/bootstrap-stylus/js/affix.js',
+    'bower_components/bootstrap-stylus/js/alert.js',
+    'bower_components/bootstrap-stylus/js/dropdown.js',
+    'bower_components/bootstrap-stylus/js/tooltip.js',
+    'bower_components/bootstrap-stylus/js/modal.js',
+    'bower_components/bootstrap-stylus/js/transition.js',
+    'bower_components/bootstrap-stylus/js/button.js',
+    'bower_components/bootstrap-stylus/js/popover.js',
+    'bower_components/bootstrap-stylus/js/carousel.js',
+    'bower_components/bootstrap-stylus/js/scrollspy.js',
+    'bower_components/bootstrap-stylus/js/collapse.js',
+    'bower_components/bootstrap-stylus/js/tab.js'
   ], null, 'app');
 };
 
@@ -167,7 +167,7 @@ EmberGenerator.prototype.all = function all() {
   this.write('app/index.html', this.indexFile);
 
   if (this.compassBootstrap) {
-    this.copy('styles/style_bootstrap.scss', 'app/styles/style.scss');
+    this.copy('styles/style_bootstrap.styl', 'app/styles/style.styl');
   } else {
     this.copy('styles/normalize.css', 'app/styles/normalize.css');
     this.copy('styles/style.css', 'app/styles/style.css');

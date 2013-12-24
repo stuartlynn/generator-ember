@@ -170,7 +170,7 @@ module.exports = function (grunt) {
                     compress: true,
                         paths: ['node_modules/grunt-contrib-stylus/node_modules']
                 },
-            files: { 'app/styles/*.css': ['app/styles/*.styl']}
+            files: {'app/styles/style.css': ['app/styles/{,*/}*.styl']}
             }
         },    
         // not used since Uglify task does concat,
